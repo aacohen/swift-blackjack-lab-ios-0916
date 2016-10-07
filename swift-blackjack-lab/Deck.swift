@@ -10,22 +10,37 @@ import Foundation
 
 class Deck {
     
-    var undealtArray: [Card]
-    var dealtArray: [Card]
-    var description: String
+    fileprivate(set) var undealtArray: [Card] = []
+    fileprivate(set) var dealtArray: [Card] = []
+    var description: String = ""
     //Add a description string property that can be used to print information regarding the cards to the console. This string will need to contain information about the remaining cards and dealt cards.
     //Top-tip: Use the global descriptionFor(cardArray:) method from Card.swift to add detail to this description.
     
     init(){
-      //  Write an initializer that generates the 52 unique cards required for modeling a standard 52-card deck. It should hold them in the array of cards that can be dealt.
+        //  Write an initializer that generates the 52 unique cards required for modeling a standard 52-card deck. It should hold them in the array of cards that can be dealt.
+        let suits = Card.validSuits()
+        let rank = Card.validRanks()
+        for suit in suits {
+            for r in rank {
+                undealtArray.append(Card(suit: suit, rank: r))
+            }
+            
+            
+        }
+        dealtArray = []
+        print("undealtArray after loop \(undealtArray)")
     }
     
     func drawCard() -> Card {
         
-        let nextCard = undealtArray[0]
-        undealtArray.remove(at: 0)
+       let count = undealtArray.count
+        if count > 0 {
+        let nextCard = undealtArray[count - 1]
+        undealtArray.remove(at: count - 1)
         dealtArray.append(nextCard)
         return nextCard
+        }
+        return Card(suit: "", rank: "")
     }
     
     func shuffle() {

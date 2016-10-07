@@ -12,21 +12,21 @@ class Card {
     var suit: String
     var rank: String
     var cardLabel: String
-    var cardValue: Int
+    var cardValue: Int = 0
     var description: String { return cardLabel }
     
     init(suit: String, rank: String) {
         self.suit = suit
         self.rank = rank
-        self.cardLabel = "♠️A"
-        self.cardValue = determineCardValue(rank: self.rank)
+        self.cardLabel = "\(self.suit)\(self.rank)"
+        cardValue = determineCardValue(rank: rank)
     }
     
-    func validSuits() -> [String] {
-        return ["♠️","♣️","♥️","♦️"]
+    class func validSuits() -> [String] {
+        return ["♠️","♦️","♥️","♣️"]
     }
     
-    func validRanks() -> [String] {
+    class func validRanks() -> [String] {
         return ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
     }
     
@@ -54,23 +54,17 @@ class Card {
             return 10
         }
     }
+
 }
 
 func descriptionFor(cardArray: [Card]) -> String {
     // This should take in an array of Card objects and return a single string of all the cardLabels in the array, sorted by suit and rank, with each suit on a new line.
     
-    let sortedArray = cardArray.sorted(by: )
-    var cardLabelArray = [String]()
-    for object in cardArray {
-            cardLabelArray.append(object.cardLabel)
-    }
-    print("array of card labels not yet sorted \(cardLabelArray)")
-    let sortedArray =
-    for object in sortedArray {
-        if let object = self.object {
-            sortedString = sortedString + object.cardLabel
-        }
-    }
+//  var sortedCardArray = cardArray.sorted { (card0, card1) -> Bool in
+//
+//        card0.rank > card1.rank
+//    
+//    }
     
-    
+  return ""
 }
